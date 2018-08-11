@@ -10,7 +10,9 @@ public class App {
 
         System.out.println("Hello user!");
         System.out.println("Please choose your option");
+        System.out.println("1 - import books from file");
         System.out.println("2 - contact");
+        System.out.println("8 - print list of books");
         System.out.println("9 - exit");
 
         while (true) {
@@ -22,6 +24,10 @@ public class App {
                             return;
                         case "2":
                             System.out.println("bookstore@bookstore.pl");
+                            return;
+                        case "1":
+                            System.out.println("podaj nazwę pliku");
+                            CsvBooksImporter.bookImportFromFile(scanner.nextLine());
                             return;
                         default:
                             return;
