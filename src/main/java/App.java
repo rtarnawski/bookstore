@@ -6,35 +6,39 @@ public class App {
 
     public static void main(String[] args) {
 
+        BookData.getINSTANCE()
+                .getBooks()
+                .addAll(CsvBooksImporter.bookImportFromFile("books.csv"));
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Hello user!");
-        System.out.println("Please choose your option");
-        System.out.println("1 - import books from file");
-        System.out.println("2 - contact");
-        System.out.println("8 - print list of books");
-        System.out.println("9 - exit");
 
-        while (true) {
-            String usersChoice = scanner.nextLine();
+            while (true) {
+                System.out.println("Please choose your option:");
+                System.out.println("2 - contact");
+                System.out.println("8 - print list of books");
+                System.out.println("9 - exit");
+
+                String usersChoice = scanner.nextLine();
                 if (StringUtils.isNumeric(usersChoice)) {
                     switch (usersChoice) {
                         case "9":
                             System.out.println("Thank you and CU next time!");
                             return;
                         case "2":
-                            System.out.println("bookstore@bookstore.pl");
-                            return;
-                        case "1":
-                            System.out.println("podaj nazwę pliku");
-                            CsvBooksImporter.bookImportFromFile(scanner.nextLine());
-                            return;
+                            System.out.println("\nbookstore@bookstore.p2\n");
+                            continue;
+                        case "8":
+                            BookData.printBooks();
+                            continue;
+
                         default:
-                            return;
+                            continue;
                     }
-                }else{
-                        System.out.println("Please write a number");
-                    }
+                } else {
+                    System.out.println("Please write a number");
+                }
+            }
         }
     }
-}
