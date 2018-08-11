@@ -26,8 +26,19 @@ public class CsvBooksImporter {
                 String title = split[1];
                 int isbn = Integer.parseInt(split[2]);
                 int publishingDate = Integer.parseInt(split[3]);
+                BookBinding bookBinding = (BookBinding.valueOf(split[4]));
+                List<Author> authorList = new ArrayList<>();
 
-                bookList.add(new Book(id, title, isbn, publishingDate));
+                String[] authorsSplitted = split[5].split(",");
+
+                for (String s : authorsSplitted) {
+                    int idAuthor = Integer.parseInt(s);
+                    authorList.add(AuthorData.getINSTANCE().getAuthors().get(idAuthor-1));
+                }
+
+                 BooksCategory category = CategoryData.getINSTANCE().getBooksCategories().get(Integer.parseInt(split[6])-1);
+
+                bookList.add(new Book(id, title, isbn, publishingDate,bookBinding, authorList, category));
 
                 nextLine = bufferedReader.readLine();
             }

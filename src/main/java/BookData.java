@@ -10,33 +10,22 @@ import java.util.List;
 
 public class BookData {
 
-    public static List<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
     private static List<Book> books = new ArrayList<>();
 
-    private static BookData INSTANCE;
+    private static BookData INSTANCE = new BookData();
 
     private BookData() {
 
     }
 
 public static BookData getINSTANCE(){
-        if(INSTANCE == null){
-            return new BookData();
-        }
+
         return INSTANCE;
 }
-   
-    
-    public static void printBooks(){
-        System.out.println();
-        for (Book bookInLoop : books ) {
-            System.out.println(bookInLoop.toString());
-        }
-        System.out.println();
-    }
 
 
 }
