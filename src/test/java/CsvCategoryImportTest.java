@@ -1,6 +1,5 @@
 import org.junit.Assert;
         import org.junit.Test;
-        import org.junit.jupiter.api.Assertions;
 
 
         import java.io.BufferedReader;
@@ -17,8 +16,16 @@ import org.junit.Assert;
 
 public class CsvCategoryImportTest {
 
+
+    @Test(expected = FileNotFoundException.class)
+    public void categoryImportFromFileShouldThrowException() throws IOException {
+
+       CsvCategoryImport.categoryImportFromFile("categoriesy.csv");
+
+    }
+
     @Test
-    public void categoryImportFromFile() {
+    public void categoryImportFromFile() throws IOException {
 
 
 
@@ -30,9 +37,9 @@ public class CsvCategoryImportTest {
 
         List<BooksCategory> categoryList = CsvCategoryImport.categoryImportFromFile("categories.csv");
 
-        Assertions.assertEquals(expectedCategoryList.size(), categoryList.size());
+        Assert.assertEquals(expectedCategoryList.size(), categoryList.size());
 
-        Assertions.assertEquals(expectedCategoryList.get(1).getName(), categoryList.get(1).getName());
+        Assert.assertEquals(expectedCategoryList.get(1).getName(), categoryList.get(1).getName());
 
 
        // Assertions.assertEquals(expectedCategoryList.toArray(), categoryList.toArray());

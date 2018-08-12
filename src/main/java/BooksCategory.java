@@ -6,6 +6,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
 
 public class BooksCategory {
 
@@ -13,12 +14,6 @@ public class BooksCategory {
     private String name;
     private int priority;
 
-    @Override
-    public String toString() {
-        return "BooksCategory{" +
-                "categoryID=" + categoryID +
-                ", name='" + name + '\'' +
-                ", priority=" + priority +
-                '}';
-    }
+
+
 }

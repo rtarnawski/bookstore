@@ -7,11 +7,10 @@ import java.util.List;
 
 public class CsvAuthorImporter {
 
-    public static List<Author> authorsImportFromFile(String filename) {
+    public static List<Author> authorsImportFromFile(String filename) throws IOException {
 
         List<Author> authorList = new ArrayList<>();
 
-        try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
             StringBuffer stringBuffer = new StringBuffer();
@@ -32,11 +31,7 @@ public class CsvAuthorImporter {
                 nextLine = bufferedReader.readLine();
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         return authorList;
     }

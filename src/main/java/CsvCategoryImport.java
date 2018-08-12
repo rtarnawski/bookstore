@@ -8,11 +8,10 @@ import java.util.Locale;
 
 public class CsvCategoryImport {
 
-    public static List<BooksCategory> categoryImportFromFile(String filename) {
+    public static List<BooksCategory> categoryImportFromFile(String filename) throws IOException {
 
         List<BooksCategory> categoryList = new ArrayList<>();
 
-        try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
             StringBuffer stringBuffer = new StringBuffer();
@@ -31,12 +30,6 @@ public class CsvCategoryImport {
 
                 nextLine = bufferedReader.readLine();
             }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         return categoryList;
     }

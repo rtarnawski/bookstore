@@ -7,11 +7,11 @@ import java.util.List;
 
 public class CsvBooksImporter {
 
-    public static List<Book> bookImportFromFile(String filename) {
+    public static List<Book> bookImportFromFile(String filename) throws IOException {
 
         List<Book> bookList = new ArrayList<>();
 
-        try {
+
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
             StringBuffer stringBuffer = new StringBuffer();
@@ -61,11 +61,7 @@ public class CsvBooksImporter {
                 nextLine = bufferedReader.readLine();
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
 
         return bookList;
     }
