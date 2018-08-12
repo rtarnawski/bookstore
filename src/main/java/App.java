@@ -27,26 +27,35 @@ public class App {
             while (true) {
                 System.out.println("Please choose your option:");
                 System.out.println("1 - add book to the bookstore");
-                System.out.println("2 - contact");
-                System.out.println("8 - print list of books");
+                System.out.println("2 - print list of books");
+                System.out.println("3 - print list of categories");
+                System.out.println("4 - print list of authors");
+
                 System.out.println("9 - exit");
+                System.out.println("10 - contact");
 
                 String usersChoice = scanner.nextLine();
                 if (StringUtils.isNumeric(usersChoice)) {
                     switch (usersChoice) {
                         case "1":
                            // BookOperations.addBook();
-                            return;
+                            continue;
+                        case "2":
+                            BookOperations.printBooks();
+                            continue;
+                        case "3":
+                            CategoryOperations.printCategories();
+                            continue;
+                        case "4":
+                            AuthorOperations.printAuthors();
+                            continue;
+
                         case "9":
                             System.out.println("Thank you and CU next time!");
                             return;
-                        case "2":
+                        case "10":
                             System.out.println("\nbookstore@bookstore.p2\n");
                             continue;
-                        case "8":
-                            BookOperations.printBooks();
-                            continue;
-
                         default:
                             continue;
                     }

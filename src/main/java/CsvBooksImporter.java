@@ -33,10 +33,28 @@ public class CsvBooksImporter {
 
                 for (String s : authorsSplitted) {
                     int idAuthor = Integer.parseInt(s);
-                    authorList.add(AuthorData.getINSTANCE().getAuthors().get(idAuthor-1));
+
+                    List<Author> authorsInImport = AuthorData.getINSTANCE().getAuthors();
+
+                    for (int i = 0; i < authorsInImport.size(); i++) {
+
+                        if (idAuthor == authorsInImport.get(i).getAuthorID()){
+                            authorList.add(authorsInImport.get(i));
+                        }
+                    }
                 }
 
-                 BooksCategory category = CategoryData.getINSTANCE().getBooksCategories().get(Integer.parseInt(split[6])-1);
+                int categoryId = Integer.parseInt(split[6]);
+
+                BooksCategory category = null;
+
+                List<BooksCategory> booksCategoriesInImport = CategoryData.getINSTANCE().getBooksCategories();
+
+                for (int i = 0; i < booksCategoriesInImport.size(); i++) {
+                    if (categoryId == booksCategoriesInImport.get(i).getCategoryID()){
+                        category = booksCategoriesInImport.get(i);
+                    }
+                }
 
                 bookList.add(new Book(id, title, isbn, publishingDate,bookBinding, authorList, category));
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoryData {
 
-    private static List<BooksCategory> booksCategories = new ArrayList<>();
+    private List<BooksCategory> booksCategories = new ArrayList<>();
 
     public List<BooksCategory> getBooksCategories() {
         return booksCategories;
