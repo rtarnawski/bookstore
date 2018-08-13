@@ -6,8 +6,6 @@ import java.util.List;
 
 public class BookFunctions {
 
-
-
     public static Book findBookByISBN(List<Book> bookList, int isbn){
 
             for (Book bookInLoop : bookList) {
@@ -17,6 +15,15 @@ public class BookFunctions {
         }
         return null;
     }
+
+    // StreamStyle
+
+    public static Book findBookByISBNStreamStyle(List<Book> bookList, int isbn){
+
+        return bookList.stream().filter(e -> e.getIsbn() == isbn).findFirst().get();
+    }
+
+
 
 public static long sumOfYearsOfPublishingDatesForAllBooks(List<Book> bookList){
         long sum = 0;

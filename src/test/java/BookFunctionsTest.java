@@ -31,6 +31,13 @@ public class BookFunctionsTest {
     }
 
     @Test
+    public void findBookByISBNShouldReturnProperBookStreamStyle() {
+        int isbn = 15886;
+        Book bookByISBN = BookFunctions.findBookByISBNStreamStyle(testBookList, isbn);
+        Assert.assertEquals(isbn, bookByISBN.getIsbn());
+    }
+
+    @Test
     public void sumOfYearsOfPublishingDatesForAllBooks() {
 
         Assert.assertEquals(10075,BookFunctions.sumOfYearsOfPublishingDatesForAllBooks(testBookList) );
