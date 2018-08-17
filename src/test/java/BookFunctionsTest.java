@@ -44,6 +44,13 @@ public class BookFunctionsTest {
     }
 
     @Test
+    public void sumOfYearsOfPublishingDatesForAllBooksStreamStyle() {
+
+        Assert.assertEquals(10075,BookFunctions.sumOfYearsOfPublishingDatesForAllBooksStreamStyle(testBookList) );
+    }
+
+
+    @Test
     public void sumOfBooksPublishedAfterYear() {
 
         Assert.assertEquals(4,BookFunctions.sumOfBooksPublishedAfterYear(testBookList, 2007));
@@ -81,5 +88,37 @@ public class BookFunctionsTest {
         Assert.assertEquals(1, BookFunctions.getTheOldestBook(testBookList).size());
         Assert.assertEquals(15886, BookFunctions.getTheOldestBook(testBookList).get(0).getIsbn());
 
+    }
+
+    @Test
+    public void getAveragePublishingYear() {
+        Assert.assertEquals(2015, BookFunctions.getAveragePublishingYear(testBookList));
+    }
+
+    @Test
+    public void bookPublishedBefore() {
+        Assert.assertFalse(BookFunctions.bookPublishedBefore(2003, testBookList));
+        Assert.assertTrue(BookFunctions.bookPublishedBefore(2015, testBookList));
+    }
+
+    @Test
+    public void booksPublishedAfterYearWithTitleBeginigWitLetter() {
+
+        Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetter(2010, "c", testBookList).size());
+        Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetter(2010, "C", testBookList).size());
+    }
+
+    @Test
+    public void sortBooksAsscendingByPublishingDate() {
+
+        Assert.assertEquals(15886, BookFunctions.sortBooksAsscendingByPublishingDate(testBookList).get(0).getIsbn());
+        Assert.assertEquals(1869558, BookFunctions.sortBooksAsscendingByPublishingDate(testBookList).get(testBookList.size()-1).getIsbn());
+    }
+
+    @Test
+    public void sortBooksDescendingByPublishingDate() {
+
+        Assert.assertEquals(1869558, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(0).getIsbn());
+        Assert.assertEquals(15886 , BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(testBookList.size()-1).getIsbn());
     }
 }

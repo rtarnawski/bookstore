@@ -1,8 +1,6 @@
 import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class BookFunctions {
 
@@ -32,6 +30,12 @@ public static long sumOfYearsOfPublishingDatesForAllBooks(List<Book> bookList){
     }
         return sum;
 }
+
+    public static long sumOfYearsOfPublishingDatesForAllBooksStreamStyle(List<Book> bookList){
+
+        return bookList.stream().mapToLong(Book::getPublishingDate).sum();
+
+    }
 
 public static int sumOfBooksPublishedAfterYear(List<Book>bookList, int year){
 
@@ -106,6 +110,80 @@ return theNewestBooks;
         }
         return theOldestBooks;
 
+    }
+
+    public static int getAveragePublishingYear(List<Book> bookList){
+
+        int sumOfPublishingYears = 0;
+
+        for (Book book : bookList) {
+
+            sumOfPublishingYears += book.getPublishingDate();
+        }
+        return sumOfPublishingYears / bookList.size();
+    }
+
+    public static boolean bookPublishedBefore(int year, List<Book> bookList){
+
+        for (Book book : bookList) {
+            if ((book.getPublishingDate() < year))
+                return true;
+        }
+        return false;
+    }
+
+    public static List<Book> booksPublishedAfterYearWithTitleBeginigWitLetter(int year, String letter, List<Book> bookList){
+        List<Book> resultBookList = new ArrayList<>();
+        for (Book bookInLoop : bookList) {
+            String firstLetterInLoop = bookInLoop.getTitle().substring(0, 1);
+
+            // I decided to extract first letter to be able to use .equalsIgnorcase instead of
+            // .startsWith(letter), which is case sensitive
+
+
+            if (bookInLoop.getPublishingDate() > year && firstLetterInLoop.equalsIgnoreCase(letter)){
+                    resultBookList.add(bookInLoop);
+            }
+        }
+        return resultBookList;
+    }
+
+    static class BookCompAscPublishingDate implements Comparator<Book>{
+        @Override
+        public int compare(Book o1, Book o2) {
+            if (o1.getPublishingDate() < o2.getPublishingDate()){
+                return -1;
+            }
+            return 1;
+        }
+    }
+
+
+
+    public static List<Book> sortBooksAsscendingByPublishingDate(List<Book> bookList){
+
+     Collections.sort(bookList, new BookCompAscPublishingDate());
+
+     return bookList;
+
+    }
+
+
+    static class BookCompDescPublishingDate implements Comparator<Book>{
+        @Override
+        public int compare(Book o1, Book o2) {
+            if (o1.getPublishingDate() < o2.getPublishingDate()){
+                return 1;
+            }
+            return -1;
+        }
+    }
+
+    public static List<Book> sortBooksDescendingByPublishingDate(List<Book> bookList){
+
+        Collections.sort(bookList, new BookCompDescPublishingDate());
+
+        return bookList;
     }
 
 }
