@@ -169,19 +169,18 @@ return theNewestBooks;
     }
 
 
-    static class BookCompDescPublishingDate implements Comparator<Book>{
-        @Override
-        public int compare(Book o1, Book o2) {
-            if (o1.getPublishingDate() < o2.getPublishingDate()){
-                return 1;
-            }
-            return -1;
-        }
-    }
-
     public static List<Book> sortBooksDescendingByPublishingDate(List<Book> bookList){
 
-        Collections.sort(bookList, new BookCompDescPublishingDate());
+        Collections.sort(bookList, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+
+                if (o1.getPublishingDate() < o2.getPublishingDate()){
+                    return 1;
+                }
+                return -1;
+            }
+        });
 
         return bookList;
     }
