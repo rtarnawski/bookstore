@@ -1,5 +1,4 @@
 
-import org.apache.commons.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -7,7 +6,7 @@ import java.util.Scanner;
 
 public class CategoryOperations {
 
-    public static void printCategories(){
+    public static void printCategories() {
 
         System.out.println();
 
@@ -21,11 +20,11 @@ public class CategoryOperations {
 
     }
 
-    public static void addCategory(){
+    public static void addCategory() {
 
         Scanner scanner = new Scanner(System.in);
 
-        int newCategoryId = CategoryData.getINSTANCE().getBooksCategories().size()+1;
+        int newCategoryId = CategoryData.getINSTANCE().getBooksCategories().size() + 1;
 
         System.out.println("Please provide name of the category:");
         String newCategoryName = scanner.nextLine();
@@ -34,7 +33,7 @@ public class CategoryOperations {
         while (true) {
             System.out.println("Please provide numeric priority");
             String odp = scanner.nextLine();
-            if (StringUtils.isNumeric(odp)){
+            if (StringUtils.isNumeric(odp)) {
                 newCategorypriority = Integer.parseInt(odp);
                 break;
             }

@@ -1,3 +1,4 @@
-public enum BookBinding {T, M
+public enum BookBinding {
+    T, M
 
 }

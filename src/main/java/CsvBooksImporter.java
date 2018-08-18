@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,55 +11,53 @@ public class CsvBooksImporter {
         List<Book> bookList = new ArrayList<>();
 
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
-            StringBuffer stringBuffer = new StringBuffer();
 
-            String nextLine = bufferedReader.readLine();
+        String nextLine = bufferedReader.readLine();
 
-            while (nextLine != null) {
+        while (nextLine != null) {
 
-                String[] split = nextLine.split(";");
+            String[] split = nextLine.split(";");
 
-                int id = Integer.parseInt(split[0]);
-                String title = split[1];
-                int isbn = Integer.parseInt(split[2]);
-                int publishingDate = Integer.parseInt(split[3]);
-                BookBinding bookBinding = (BookBinding.valueOf(split[4]));
-                List<Author> authorList = new ArrayList<>();
+            int id = Integer.parseInt(split[0]);
+            String title = split[1];
+            int isbn = Integer.parseInt(split[2]);
+            int publishingDate = Integer.parseInt(split[3]);
+            BookBinding bookBinding = (BookBinding.valueOf(split[4]));
+            List<Author> authorList = new ArrayList<>();
 
-                String[] authorsSplitted = split[5].split(",");
+            String[] authorsSplitted = split[5].split(",");
 
-                for (String s : authorsSplitted) {
-                    int idAuthor = Integer.parseInt(s);
+            for (String s : authorsSplitted) {
+                int idAuthor = Integer.parseInt(s);
 
-                    List<Author> authorsInImport = AuthorData.getINSTANCE().getAuthors();
+                List<Author> authorsInImport = AuthorData.getINSTANCE().getAuthors();
 
-                    for (int i = 0; i < authorsInImport.size(); i++) {
+                for (int i = 0; i < authorsInImport.size(); i++) {
 
-                        if (idAuthor == authorsInImport.get(i).getAuthorID()){
-                            authorList.add(authorsInImport.get(i));
-                        }
+                    if (idAuthor == authorsInImport.get(i).getAuthorID()) {
+                        authorList.add(authorsInImport.get(i));
                     }
                 }
-
-                int categoryId = Integer.parseInt(split[6]);
-
-                BooksCategory category = null;
-
-                List<BooksCategory> booksCategoriesInImport = CategoryData.getINSTANCE().getBooksCategories();
-
-                for (int i = 0; i < booksCategoriesInImport.size(); i++) {
-                    if (categoryId == booksCategoriesInImport.get(i).getCategoryID()){
-                        category = booksCategoriesInImport.get(i);
-                    }
-                }
-
-                bookList.add(new Book(id, title, isbn, publishingDate,bookBinding, authorList, category));
-
-                nextLine = bufferedReader.readLine();
             }
 
+            int categoryId = Integer.parseInt(split[6]);
+
+            BooksCategory category = null;
+
+            List<BooksCategory> booksCategoriesInImport = CategoryData.getINSTANCE().getBooksCategories();
+
+            for (int i = 0; i < booksCategoriesInImport.size(); i++) {
+                if (categoryId == booksCategoriesInImport.get(i).getCategoryID()) {
+                    category = booksCategoriesInImport.get(i);
+                }
+            }
+
+            bookList.add(new Book(id, title, isbn, publishingDate, bookBinding, authorList, category));
+
+            nextLine = bufferedReader.readLine();
+        }
 
 
         return bookList;

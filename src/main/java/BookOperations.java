@@ -1,12 +1,9 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class BookOperations {
 
 
-    public static void printBooks(){
+    public static void printBooks() {
         System.out.println();
-        for (Book bookInLoop : BookData.getINSTANCE().getBooks() ) {
+        for (Book bookInLoop : BookData.getINSTANCE().getBooks()) {
             System.out.println(bookInLoop.toString());
         }
         System.out.println();

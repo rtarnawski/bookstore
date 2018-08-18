@@ -15,5 +15,4 @@ public class BooksCategory {
     private int priority;
 
 
-
 }

@@ -1,6 +1,3 @@
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class CategoryData {
 
     private static CategoryData INSTANCE = new CategoryData();
 
-    public static CategoryData getINSTANCE(){
+    public static CategoryData getINSTANCE() {
 
         return INSTANCE;
     }

@@ -1,10 +1,8 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CsvCategoryImport {
 
@@ -12,24 +10,22 @@ public class CsvCategoryImport {
 
         List<BooksCategory> categoryList = new ArrayList<>();
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
-            StringBuffer stringBuffer = new StringBuffer();
+        String nextLine = bufferedReader.readLine();
 
-            String nextLine = bufferedReader.readLine();
+        while (nextLine != null) {
 
-            while (nextLine != null) {
+            String[] split = nextLine.split(";");
 
-                String[] split = nextLine.split(";");
+            int id = Integer.parseInt(split[0]);
+            String name = split[1];
+            int priority = Integer.parseInt(split[2]);
 
-                int id = Integer.parseInt(split[0]);
-                String name = split[1];
-                int priority = Integer.parseInt(split[2]);
+            categoryList.add(new BooksCategory(id, name, priority));
 
-                categoryList.add(new BooksCategory(id, name, priority));
-
-                nextLine = bufferedReader.readLine();
-            }
+            nextLine = bufferedReader.readLine();
+        }
 
         return categoryList;
     }

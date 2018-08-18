@@ -53,6 +53,9 @@ public class App {
                     case "4":
                         AuthorOperations.printAuthors();
                         continue;
+                    case "5":
+                        BookFunctions.sortBooksByTitle(BookData.getINSTANCE().getBooks());
+                        continue;
 
                     case "9":
                         System.out.println("Thank you and CU next time!");

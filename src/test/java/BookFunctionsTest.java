@@ -181,4 +181,63 @@ public class BookFunctionsTest {
         Assert.assertEquals(2018, BookFunctions.sortBooksDescendingByPublishingDateStreamStyle(testBookList).get(0).getPublishingDate());
         Assert.assertEquals(2007, BookFunctions.sortBooksDescendingByPublishingDateStreamStyle(testBookList).get(testBookList.size() - 1).getPublishingDate());
     }
+
+    @Test
+    public void addYearsToPublishingDateForEveryBook() {
+        BookFunctions.addYearsToPublishingDateForEveryBook(100, testBookList);
+
+        Assert.assertEquals(2117, testBookList.get(0).getPublishingDate());
+        Assert.assertEquals(2115, testBookList.get(1).getPublishingDate());
+
+    }
+
+    @Test
+    public void addYearsToPublishingDateForEveryBookStreamStyle() {
+        BookFunctions.addYearsToPublishingDateForEveryBookStreamStyle(100, testBookList);
+
+        Assert.assertEquals(2117, testBookList.get(0).getPublishingDate());
+        Assert.assertEquals(2115, testBookList.get(1).getPublishingDate());
+
+    }
+
+    @Test
+    public void titlesOfBooksPublishedInYearsDivibleByTwo() {
+
+        Assert.assertEquals(2,
+                BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).size());
+
+        Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).contains("core python"));
+        Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).contains("core c++"));
+    }
+
+    @Test
+    public void titlesOfBooksPublishedInYearsDivibleByTwoStremStyle() {
+
+        Assert.assertEquals(2,
+                BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).size());
+
+        Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).contains("core python"));
+        Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).contains("core c++"));
+    }
+
+    @Test
+    public void sortBooksByTitle() {
+
+        BookFunctions.sortBooksByTitle(testBookList);
+
+        Assert.assertEquals("core c++", testBookList.get(0).getTitle());
+        Assert.assertEquals("core python", testBookList.get(testBookList.size() - 1).getTitle());
+
+    }
+
+    @Test
+    public void sortBooksByTitleStreamStyle() {
+
+
+        Assert.assertEquals("core c++",
+                BookFunctions.sortBooksByTitleStreamStyle(testBookList).get(0).getTitle());
+        Assert.assertEquals("core python",
+                BookFunctions.sortBooksByTitleStreamStyle(testBookList).get(4).getTitle());
+
+    }
 }

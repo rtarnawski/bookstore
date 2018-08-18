@@ -2,7 +2,7 @@ import java.util.List;
 
 public class AuthorOperations {
 
-    public static void printAuthors(){
+    public static void printAuthors() {
 
         List<Author> authorListInPrintMethod = AuthorData.getINSTANCE().getAuthors();
 

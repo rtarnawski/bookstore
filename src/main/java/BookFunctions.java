@@ -249,4 +249,48 @@ public class BookFunctions {
                 .collect(Collectors.toList());
     }
 
+    public static void addYearsToPublishingDateForEveryBook(int year, List<Book> bookList) {
+
+        for (Book bookInLoop : bookList) {
+            bookInLoop.setPublishingDate(bookInLoop.getPublishingDate() + year);
+        }
+    }
+
+    public static void addYearsToPublishingDateForEveryBookStreamStyle(int year, List<Book> bookList) {
+
+        bookList.stream().forEach(e -> e.setPublishingDate(e.getPublishingDate() + year));
+    }
+
+    public static List<String> titlesOfBooksPublishedInYearsDivibleByTwo(List<Book> bookList) {
+        List<String> titles = new ArrayList<>();
+
+        for (Book bookInLoop : bookList) {
+            if (bookInLoop.getPublishingDate() % 2 == 0) {
+                titles.add(bookInLoop.getTitle());
+            }
+        }
+
+        return titles;
+    }
+
+    public static List<String> titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(List<Book> bookList) {
+        return bookList.stream()
+                .filter(e -> e.getPublishingDate() % 2 == 0)
+                .map(e -> e.getTitle())
+                .collect(Collectors.toList());
+    }
+
+    public static void sortBooksByTitle(List<Book> bookList) {
+
+        bookList.sort(Comparator.comparing(book -> book.getTitle()));
+    }
+
+    public static List<Book> sortBooksByTitleStreamStyle(List<Book> bookList) {
+
+        return bookList.stream().sorted(Comparator.comparing(Book::getTitle)).collect(Collectors.toList());
+    }
+
+
 }
+
+
