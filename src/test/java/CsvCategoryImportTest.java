@@ -14,12 +14,10 @@ public class CsvCategoryImportTest {
     public void categoryImportFromFileShouldThrowException() throws IOException {
 
         CsvCategoryImport.categoryImportFromFile("categoriesy.csv");
-
     }
 
     @Test
     public void categoryImportFromFile() throws IOException {
-
 
         List<BooksCategory> expectedCategoryList = new ArrayList<>();
 
@@ -33,10 +31,6 @@ public class CsvCategoryImportTest {
 
         Assert.assertEquals(expectedCategoryList.get(1).getName(), categoryList.get(1).getName());
 
-
-        // Assertions.assertEquals(expectedCategoryList.toArray(), categoryList.toArray());
-//       Assert.assertArrayEquals(expectedCategoryList.toArray(), categoryList.toArray());
-//       assertTrue(Arrays.equals(expectedCategoryList.toArray(), categoryList.toArray()));
 
     }
 }
