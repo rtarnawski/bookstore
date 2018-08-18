@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,26 +10,23 @@ public class CsvAuthorImporter {
 
         List<Author> authorList = new ArrayList<>();
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 
-            StringBuffer stringBuffer = new StringBuffer();
+        String nextLine = bufferedReader.readLine();
 
-            String nextLine = bufferedReader.readLine();
+        while (nextLine != null) {
 
-            while (nextLine != null) {
+            String[] split = nextLine.split(";");
 
-                String[] split = nextLine.split(";");
+            int id = Integer.parseInt(split[0]);
+            String name = split[1];
+            String lastName = split[2];
+            int age = Integer.parseInt(split[3]);
 
-                int id = Integer.parseInt(split[0]);
-                String name = split[1];
-                String lastName = split[2];
-                int age = Integer.parseInt(split[3]);
+            authorList.add(new Author(id, name, lastName, age));
 
-                authorList.add(new Author(id, name, lastName, age));
-
-                nextLine = bufferedReader.readLine();
-            }
-
+            nextLine = bufferedReader.readLine();
+        }
 
 
         return authorList;

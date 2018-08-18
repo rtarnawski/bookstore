@@ -20,8 +20,4 @@ public class Book {
     private BooksCategory booksCategory;
 
 
-
-
-
-
 }

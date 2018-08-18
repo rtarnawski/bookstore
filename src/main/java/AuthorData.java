@@ -14,9 +14,9 @@ public class AuthorData {
 
     public static AuthorData INSTANCE;
 
-    public static AuthorData getINSTANCE(){
-        if (INSTANCE == null){
-             INSTANCE = new AuthorData();
+    public static AuthorData getINSTANCE() {
+        if (INSTANCE == null) {
+            INSTANCE = new AuthorData();
         }
         return INSTANCE;
     }
