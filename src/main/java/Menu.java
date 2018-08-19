@@ -47,6 +47,8 @@ public class Menu {
                         BookPrinter.changeView();
                         continue;
                     case "9":
+                        CsvAuthorExporter.exportAuthorsToCsvFile(AuthorData.getINSTANCE().getAuthors());
+                        CsvCategoryExporter.exportCategoriesToCsvFile(CategoryData.getINSTANCE().getBooksCategories());
                         System.out.println("Thank you and CU next time!");
                         return;
                     case "10":

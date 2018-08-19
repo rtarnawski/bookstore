@@ -226,7 +226,7 @@ public class BookFunctions {
         public int compare(Book o1, Book o2) {
             if (o1.getPublishingDate() < o2.getPublishingDate()) {
                 return -1;
-            }else if(o1.getPublishingDate() == o2.getPublishingDate()){
+            } else if (o1.getPublishingDate() == o2.getPublishingDate()) {
                 return 0;
             }
             return 1;
