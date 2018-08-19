@@ -1,18 +1,7 @@
-
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
-import java.util.Scanner;
-
 public class CategoryOperations {
-
     public static void printCategories() {
-
         System.out.println();
-
-        List<BooksCategory> booksCategoriesInPrintingMethod = CategoryData.getINSTANCE().getBooksCategories();
-
-        for (BooksCategory categoryInLoop : booksCategoriesInPrintingMethod) {
+        for (BooksCategory categoryInLoop : CategoryData.getINSTANCE().getBooksCategories()) {
             System.out.println(categoryInLoop.toString());
 
         }
@@ -21,26 +10,15 @@ public class CategoryOperations {
     }
 
     public static void addCategory() {
-
-        Scanner scanner = new Scanner(System.in);
-
         int newCategoryId = CategoryData.getINSTANCE().getBooksCategories().size() + 1;
-
         System.out.println("Please provide name of the category:");
-        String newCategoryName = scanner.nextLine();
-        int newCategorypriority;
-
-        while (true) {
-            System.out.println("Please provide numeric priority");
-            String odp = scanner.nextLine();
-            if (StringUtils.isNumeric(odp)) {
-                newCategorypriority = Integer.parseInt(odp);
-                break;
-            }
-        }
+        String newCategoryName = Validator.alphaValidator(UserInput.scanner.nextLine());
+        System.out.println("Please provide numeric priority");
+        int newCategoryPriority = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
         CategoryData.getINSTANCE()
                 .getBooksCategories()
-                .add(new BooksCategory(newCategoryId, newCategoryName, newCategorypriority));
+                .add(new BooksCategory(newCategoryId, newCategoryName, newCategoryPriority));
+        System.out.println("Thank you. Category " + newCategoryName + " has been added");
     }
 
 }

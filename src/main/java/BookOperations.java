@@ -1,6 +1,4 @@
 public class BookOperations {
-
-
     public static void printBooks() {
         System.out.println();
         for (Book bookInLoop : BookData.getINSTANCE().getBooks()) {
@@ -8,6 +6,30 @@ public class BookOperations {
         }
         System.out.println();
     }
+
+    public static void printBooksInCategory() {
+        System.out.println("\nPlease provide ID of category\n");
+        for (BooksCategory category : CategoryData.getINSTANCE().getBooksCategories()) {
+            System.out.println("ID: " + category.getCategoryID() + "  ----   " + category.getName());
+        }
+        System.out.println();
+        String stringId = Validator.numericValidator(UserInput.scanner.nextLine());
+        int categoryId = Integer.parseInt(stringId);
+        for (Book bookInLoop : BookData.getINSTANCE().getBooks()) {
+            if (bookInLoop.getBooksCategory().getCategoryID() == categoryId)
+                System.out.println(bookInLoop.toString());
+        }
+        System.out.println();
+
+    }
+
+/*    public static void changeBookName() {
+        System.out.println("\nPlease provide ID");
+        String
+
+    }*/
+
+
 
 /*
     public static void addBook(){

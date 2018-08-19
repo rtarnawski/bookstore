@@ -13,7 +13,6 @@ public class BookFunctionsTest {
 
     @Before
     public void start() {
-
         testBookList.add(new Book(1, "core java", 15847, 2017, BookBinding.M, testAuthorsList, testBooksCategory));
         testBookList.add(new Book(2, "core php", 16582, 2015, BookBinding.T, testAuthorsList, testBooksCategory));
         testBookList.add(new Book(3, "core html", 15886, 2007, BookBinding.M, testAuthorsList, testBooksCategory));
@@ -37,44 +36,36 @@ public class BookFunctionsTest {
 
     @Test
     public void sumOfYearsOfPublishingDatesForAllBooks() {
-
         Assert.assertEquals(10075, BookFunctions.sumOfYearsOfPublishingDatesForAllBooks(testBookList));
     }
 
     @Test
     public void sumOfYearsOfPublishingDatesForAllBooksStreamStyle() {
-
         Assert.assertEquals(10075, BookFunctions.sumOfYearsOfPublishingDatesForAllBooksStreamStyle(testBookList));
     }
 
-
     @Test
     public void sumOfBooksPublishedAfterYear() {
-
         Assert.assertEquals(4, BookFunctions.sumOfBooksPublishedAfterYear(testBookList, 2007));
     }
 
     @Test
     public void sumOfBooksPublishedAfterYearStreamStyle() {
-
         Assert.assertEquals(4, BookFunctions.sumOfBooksPublishedAfterYearStreamStyle(testBookList, 2007));
     }
 
     @Test
     public void areAllPublishedAfterYear() {
-
         Assert.assertTrue(BookFunctions.areAllPublishedAfterYear(testBookList, 2000));
     }
 
     @Test
     public void areAllPublishedAfterYearStreamStyle() {
-
         Assert.assertTrue(BookFunctions.areAllPublishedAfterYearStreamStyle(testBookList, 2000));
     }
 
     @Test
     public void getTwoLastBooks() {
-
         Assert.assertEquals(2, BookFunctions.getTwoLastBooks(testBookList).size());
         Assert.assertEquals(165582, BookFunctions.getTwoLastBooks(testBookList).get(0).getIsbn());
         Assert.assertEquals(1869558, BookFunctions.getTwoLastBooks(testBookList).get(1).getIsbn());
@@ -82,7 +73,6 @@ public class BookFunctionsTest {
 
     @Test
     public void getTwoLastBooksStreamStyle() {
-
         Assert.assertEquals(2, BookFunctions.getTwoLastBooksSteamStyle(testBookList).size());
         Assert.assertEquals(165582, BookFunctions.getTwoLastBooksSteamStyle(testBookList).get(0).getIsbn());
         Assert.assertEquals(1869558, BookFunctions.getTwoLastBooksSteamStyle(testBookList).get(1).getIsbn());
@@ -90,7 +80,6 @@ public class BookFunctionsTest {
 
     @Test
     public void getTheNewestBook() {
-
         Assert.assertEquals(2, BookFunctions.getTheNewestBook(testBookList).size());
         Assert.assertEquals(165582, BookFunctions.getTheNewestBook(testBookList).get(0).getIsbn());
         Assert.assertEquals(1869558, BookFunctions.getTheNewestBook(testBookList).get(1).getIsbn());
@@ -109,7 +98,6 @@ public class BookFunctionsTest {
         Assert.assertEquals(15886, BookFunctions.getTheOldestBook(testBookList).get(0).getIsbn());
     }
 
-
     @Test
     public void getTheOldestBookStreamStyle() {
         Assert.assertEquals(15886, BookFunctions.getTheOldestBookStreamStyle(testBookList).getIsbn());
@@ -125,13 +113,11 @@ public class BookFunctionsTest {
         Assert.assertEquals(2015, BookFunctions.getAveragePublishingYearStreamStyle(testBookList));
     }
 
-
     @Test
     public void bookPublishedBefore() {
         Assert.assertFalse(BookFunctions.bookPublishedBefore(2003, testBookList));
         Assert.assertTrue(BookFunctions.bookPublishedBefore(2015, testBookList));
     }
-
 
     @Test
     public void bookPublishedBeforeStremStyle() {
@@ -141,22 +127,18 @@ public class BookFunctionsTest {
 
     @Test
     public void booksPublishedAfterYearWithTitleBeginigWitLetter() {
-
         Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetter(2010, "c", testBookList).size());
         Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetter(2010, "C", testBookList).size());
     }
 
-
     @Test
     public void booksPublishedAfterYearWithTitleBeginigWitLetterStreamStyle() {
-
         Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetterStreamStyle(2010, "c", testBookList).size());
         Assert.assertEquals(4, BookFunctions.booksPublishedAfterYearWithTitleBeginigWitLetterStreamStyle(2010, "C", testBookList).size());
     }
 
     @Test
     public void sortBooksAsscendingByPublishingDate() {
-
         Assert.assertEquals(15886, BookFunctions.sortBooksAsscendingByPublishingDate(testBookList).get(0).getIsbn());
         Assert.assertEquals(1869558, BookFunctions.sortBooksAsscendingByPublishingDate(testBookList).get(testBookList.size() - 1).getIsbn());
     }
@@ -169,62 +151,49 @@ public class BookFunctionsTest {
 
     @Test
     public void sortBooksDescendingByPublishingDate() {
-
         Assert.assertEquals(1869558, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(0).getIsbn());
         Assert.assertEquals(15886, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(testBookList.size() - 1).getIsbn());
     }
 
-
     @Test
     public void sortBooksDescendingByPublishingDateStreamStyle() {
-
         Assert.assertEquals(2018, BookFunctions.sortBooksDescendingByPublishingDateStreamStyle(testBookList).get(0).getPublishingDate());
         Assert.assertEquals(2007, BookFunctions.sortBooksDescendingByPublishingDateStreamStyle(testBookList).get(testBookList.size() - 1).getPublishingDate());
     }
 
     @Test
     public void addYearsToPublishingDateForEveryBook() {
-        BookFunctions.addYearsToPublishingDateForEveryBook(100, testBookList);
-
-        Assert.assertEquals(2117, testBookList.get(0).getPublishingDate());
-        Assert.assertEquals(2115, testBookList.get(1).getPublishingDate());
-
+        List<Book> books = BookFunctions.addYearsToPublishingDateForEveryBook(100, testBookList);
+        Assert.assertEquals(2117, books.get(0).getPublishingDate());
+        Assert.assertEquals(2115, books.get(1).getPublishingDate());
     }
 
     @Test
     public void addYearsToPublishingDateForEveryBookStreamStyle() {
-        BookFunctions.addYearsToPublishingDateForEveryBookStreamStyle(100, testBookList);
-
-        Assert.assertEquals(2117, testBookList.get(0).getPublishingDate());
-        Assert.assertEquals(2115, testBookList.get(1).getPublishingDate());
-
+        List<Book> books = BookFunctions.addYearsToPublishingDateForEveryBookStreamStyle(100, testBookList);
+        Assert.assertEquals(2117, books.get(0).getPublishingDate());
+        Assert.assertEquals(2115, books.get(1).getPublishingDate());
     }
 
     @Test
     public void titlesOfBooksPublishedInYearsDivibleByTwo() {
-
         Assert.assertEquals(2,
                 BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).size());
-
         Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).contains("core python"));
         Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwo(testBookList).contains("core c++"));
     }
 
     @Test
     public void titlesOfBooksPublishedInYearsDivibleByTwoStremStyle() {
-
         Assert.assertEquals(2,
                 BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).size());
-
         Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).contains("core python"));
         Assert.assertTrue(BookFunctions.titlesOfBooksPublishedInYearsDivibleByTwoStreamStyle(testBookList).contains("core c++"));
     }
 
     @Test
     public void sortBooksByTitle() {
-
         BookFunctions.sortBooksByTitle(testBookList);
-
         Assert.assertEquals("core c++", testBookList.get(0).getTitle());
         Assert.assertEquals("core python", testBookList.get(testBookList.size() - 1).getTitle());
 
@@ -232,8 +201,6 @@ public class BookFunctionsTest {
 
     @Test
     public void sortBooksByTitleStreamStyle() {
-
-
         Assert.assertEquals("core c++",
                 BookFunctions.sortBooksByTitleStreamStyle(testBookList).get(0).getTitle());
         Assert.assertEquals("core python",

@@ -7,12 +7,9 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @ToString
-
 public class BooksCategory {
-
     private int categoryID;
     private String name;
     private int priority;
-
 
 }

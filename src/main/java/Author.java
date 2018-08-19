@@ -8,7 +8,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Author {
-
     private int authorID;
     private String name;
     private String lastName;

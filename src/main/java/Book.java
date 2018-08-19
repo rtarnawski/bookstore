@@ -14,10 +14,8 @@ public class Book {
     private String title;
     private int isbn;
     private int publishingDate;
-
     private BookBinding bookBinding;
     private List<Author> authors;
     private BooksCategory booksCategory;
-
 
 }
