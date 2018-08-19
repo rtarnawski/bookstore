@@ -19,5 +19,4 @@ public class CsvCategoryImport {
         }
         return categoryList;
     }
-
 }

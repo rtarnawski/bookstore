@@ -63,12 +63,10 @@ public class BookFunctions {
             twoLastBooks.add(bookList.get(i));
         }
         return twoLastBooks;
-
     }
 
     public static List<Book> getTwoLastBooksSteamStyle(List<Book> bookList) {
         return bookList.stream().skip(bookList.size() - 2).collect(Collectors.toList());
-
     }
 
     public static List<Book> getTheNewestBook(List<Book> bookList) {
@@ -82,10 +80,8 @@ public class BookFunctions {
             } else if (bookInLoop.getPublishingDate() == highYear) {
                 theNewestBooks.add(bookInLoop);
             }
-
         }
         return theNewestBooks;
-
     }
 
     public static Book getTheNewestBookStreamStyle(List<Book> bookList) {
@@ -105,7 +101,6 @@ public class BookFunctions {
             }
         }
         return theOldestBooks;
-
     }
 
     public static Book getTheOldestBookStreamStyle(List<Book> bookList) {
@@ -231,11 +226,12 @@ public class BookFunctions {
         public int compare(Book o1, Book o2) {
             if (o1.getPublishingDate() < o2.getPublishingDate()) {
                 return -1;
+            }else if(o1.getPublishingDate() == o2.getPublishingDate()){
+                return 0;
             }
             return 1;
         }
     }
-
 }
 
 

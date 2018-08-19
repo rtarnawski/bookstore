@@ -11,5 +11,4 @@ public class BooksCategory {
     private int categoryID;
     private String name;
     private int priority;
-
 }

@@ -17,5 +17,4 @@ public class Book {
     private BookBinding bookBinding;
     private List<Author> authors;
     private BooksCategory booksCategory;
-
 }

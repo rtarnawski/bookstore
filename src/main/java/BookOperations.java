@@ -1,34 +1,44 @@
-public class BookOperations {
-    public static void printBooks() {
-        System.out.println();
-        for (Book bookInLoop : BookData.getINSTANCE().getBooks()) {
-            System.out.println(bookInLoop.toString());
-        }
-        System.out.println();
-    }
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-    public static void printBooksInCategory() {
+class BookOperations {
+    static List<Book> findBooksInCategory() {
         System.out.println("\nPlease provide ID of category\n");
         for (BooksCategory category : CategoryData.getINSTANCE().getBooksCategories()) {
             System.out.println("ID: " + category.getCategoryID() + "  ----   " + category.getName());
         }
         System.out.println();
-        String stringId = Validator.numericValidator(UserInput.scanner.nextLine());
-        int categoryId = Integer.parseInt(stringId);
+        int categoryId = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
+        List<Book> bookListInCategory = new ArrayList<>();
         for (Book bookInLoop : BookData.getINSTANCE().getBooks()) {
             if (bookInLoop.getBooksCategory().getCategoryID() == categoryId)
-                System.out.println(bookInLoop.toString());
+                bookListInCategory.add(bookInLoop);
         }
-        System.out.println();
-
+        return bookListInCategory;
     }
 
-/*    public static void changeBookName() {
+    public static Optional<Book> findBookById(List<Book> bookList) {
         System.out.println("\nPlease provide ID");
-        String
+        int id = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
+        for (Book bookInLoop : bookList) {
+            if (bookInLoop.getId() == id) {
+                return Optional.ofNullable(bookInLoop);
+            }
+        }
+        System.out.println("No such ID");
+        return Optional.empty();
+    }
 
-    }*/
-
+    public static void changeBookName(Optional<Book> book) {
+        if (book.isPresent()) {
+            System.out.println("Please provide new title");
+            String newTitle = Validator.alphaValidator(UserInput.scanner.nextLine());
+            book.get().setTitle(newTitle);
+            System.out.println();
+        }
+    }
+}
 
 
 /*
@@ -53,4 +63,4 @@ public class BookOperations {
         }
     }*/
 
-}
+

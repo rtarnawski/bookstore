@@ -7,6 +7,7 @@ import java.util.List;
 public class BookData {
     private static List<Book> books = new ArrayList<>();
     private static BookData INSTANCE = new BookData();
+
     private BookData() {
     }
 
@@ -17,5 +18,4 @@ public class BookData {
     public List<Book> getBooks() {
         return books;
     }
-
 }

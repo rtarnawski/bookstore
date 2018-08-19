@@ -16,7 +16,5 @@ public class App {
             System.exit(1);
         }
         Menu.printMenu();
-
     }
-
 }

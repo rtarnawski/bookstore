@@ -21,7 +21,5 @@ public class AuthorOperations {
         Author newAuthor = new Author(id, firstName, lastName, age);
         AuthorData.getINSTANCE().getAuthors().add(newAuthor);
         System.out.println("Thank you. Author " + newAuthor.getName() + " " + newAuthor.getLastName() + " has been added\n");
-
     }
-
 }

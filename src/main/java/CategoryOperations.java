@@ -3,10 +3,8 @@ public class CategoryOperations {
         System.out.println();
         for (BooksCategory categoryInLoop : CategoryData.getINSTANCE().getBooksCategories()) {
             System.out.println(categoryInLoop.toString());
-
         }
         System.out.println();
-
     }
 
     public static void addCategory() {
@@ -20,5 +18,4 @@ public class CategoryOperations {
                 .add(new BooksCategory(newCategoryId, newCategoryName, newCategoryPriority));
         System.out.println("Thank you. Category " + newCategoryName + " has been added");
     }
-
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Menu {
     public static void printMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello user!");
+        System.out.println("Hello " + System.getProperty("user.name") + " !");
         while (true) {
             System.out.println("Please choose your option:");
             System.out.println("1 - add book to the bookstore");
@@ -15,8 +15,10 @@ public class Menu {
             System.out.println("5 - print list of books in a given category");
             System.out.println("6 - add new author");
             System.out.println("7 - add new category");
+            System.out.println("8 - change view for books");
             System.out.println("9 - exit");
             System.out.println("10 - contact");
+            System.out.println("11 - change book's name");
             String usersChoice = scanner.nextLine();
             if (StringUtils.isNumeric(usersChoice)) {
                 switch (usersChoice) {
@@ -24,7 +26,7 @@ public class Menu {
                         // BookOperations.addBook();
                         continue;
                     case "2":
-                        BookOperations.printBooks();
+                        BookPrinter.printBooks(BookData.getINSTANCE().getBooks());
                         continue;
                     case "3":
                         CategoryOperations.printCategories();
@@ -33,7 +35,7 @@ public class Menu {
                         AuthorOperations.printAuthors();
                         continue;
                     case "5":
-                        BookOperations.printBooksInCategory();
+                        BookPrinter.printBooks(BookOperations.findBooksInCategory());
                         continue;
                     case "6":
                         AuthorOperations.addAuthor();
@@ -41,11 +43,17 @@ public class Menu {
                     case "7":
                         CategoryOperations.addCategory();
                         continue;
+                    case "8":
+                        BookPrinter.changeView();
+                        continue;
                     case "9":
                         System.out.println("Thank you and CU next time!");
                         return;
                     case "10":
                         System.out.println("\nbookstore@bookstore.p2\n");
+                        continue;
+                    case "11":
+                        BookOperations.changeBookName(BookOperations.findBookById(BookData.getINSTANCE().getBooks()));
                         continue;
                     default:
                 }
@@ -54,5 +62,4 @@ public class Menu {
             }
         }
     }
-
 }
