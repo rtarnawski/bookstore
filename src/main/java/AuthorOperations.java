@@ -1,4 +1,8 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AuthorOperations {
     public static void printAuthors() {
@@ -21,5 +25,43 @@ public class AuthorOperations {
         Author newAuthor = new Author(id, firstName, lastName, age);
         AuthorData.getINSTANCE().getAuthors().add(newAuthor);
         System.out.println("Thank you. Author " + newAuthor.getName() + " " + newAuthor.getLastName() + " has been added\n");
+    }
+
+    public static Optional<Author> findAuthorById(List<Author> authorList, int id) {
+        return authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
+    }
+
+    public static Optional<Author> findAuthorByLastName(List<Author> authorList, String lastName) {
+        List<Author> authorByLastName = authorList.stream().filter(author -> author.getLastName().equalsIgnoreCase(lastName)).collect(Collectors.toList());
+        if (authorByLastName.size() == 0) {
+            return Optional.empty();
+        } else if (authorByLastName.size() == 1) {
+            return Optional.ofNullable(authorByLastName.get(0));
+        } else {
+            System.out.println("\nThere are " + authorByLastName.size() + " authors with this last name\n");
+            authorByLastName.stream().forEach(author -> System.out.println(author));
+            System.out.println("\nPlease provide author's ID\n");
+            int searchId = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
+            return findAuthorById(authorList, searchId);
+        }
+    }
+
+    public static Optional<Author> findAuthor(List<Author> authorList) {
+        System.out.println("\nPlease provide author's ID or last name");
+        String searchWord = UserInput.scanner.nextLine();
+        if (StringUtils.isNumeric(searchWord)) {
+            return findAuthorById(authorList, Integer.parseInt(searchWord));
+        } else {
+            return findAuthorByLastName(authorList, searchWord);
+        }
+    }
+
+    public static void changeAuthorsAge(Optional<Author> authorOptional) {
+        if (authorOptional.isPresent()) {
+            System.out.println("\nPlease provide new age\n");
+            authorOptional.get().setAge(Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine())));
+            System.out.println("\nNew age is set\n");
+        } else
+            System.out.println("\nAuthor not found\n");
     }
 }
