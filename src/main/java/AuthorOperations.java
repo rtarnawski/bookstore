@@ -28,12 +28,19 @@ public class AuthorOperations {
     }
 
     public static Optional<Author> findAuthorById(List<Author> authorList, int id) {
-        return authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
+        Optional<Author> authorById = authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
+        if (authorById.isPresent()){
+            return authorById;
+        }else {
+            System.out.println("Author not found");
+            return authorById;
+        }
     }
 
     public static Optional<Author> findAuthorByLastName(List<Author> authorList, String lastName) {
         List<Author> authorByLastName = authorList.stream().filter(author -> author.getLastName().equalsIgnoreCase(lastName)).collect(Collectors.toList());
         if (authorByLastName.size() == 0) {
+            System.out.println("Author not found");
             return Optional.empty();
         } else if (authorByLastName.size() == 1) {
             return Optional.ofNullable(authorByLastName.get(0));
@@ -61,7 +68,6 @@ public class AuthorOperations {
             System.out.println("\nPlease provide new age\n");
             authorOptional.get().setAge(Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine())));
             System.out.println("\nNew age is set\n");
-        } else
-            System.out.println("\nAuthor not found\n");
+        }
     }
 }

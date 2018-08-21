@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Menu {
     public static void printMenu() {
         System.out.println("Hello " + System.getProperty("user.name") + " !");
@@ -15,13 +17,17 @@ public class Menu {
             System.out.println("10 - contact");
             System.out.println("11 - change book's name");
             System.out.println("12 - change author's age");
+            System.out.println("13 - print list of books by Author");
             int usersChoice = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
+            List<Book> bookListInMain = BookData.getINSTANCE().getBooks();
+            List<Author> authorListInMain = AuthorData.getINSTANCE().getAuthors();
+            List<BooksCategory> booksCategoriesListInMain = CategoryData.getINSTANCE().getBooksCategories();
             switch (usersChoice) {
                 case 1:
                     // BookOperations.addBook();
                     continue;
                 case 2:
-                    BookPrinter.printBooks(BookData.getINSTANCE().getBooks());
+                    BookPrinter.printBooks(bookListInMain);
                     continue;
                 case 3:
                     CategoryOperations.printCategories();
@@ -42,19 +48,22 @@ public class Menu {
                     BookPrinter.changeView();
                     continue;
                 case 9:
-                    CsvAuthorExporter.exportAuthorsToCsvFile(AuthorData.getINSTANCE().getAuthors());
-                    CsvCategoryExporter.exportCategoriesToCsvFile(CategoryData.getINSTANCE().getBooksCategories());
+                    CsvAuthorExporter.exportAuthorsToCsvFile(authorListInMain);
+                    CsvCategoryExporter.exportCategoriesToCsvFile(booksCategoriesListInMain);
                     System.out.println("Thank you and CU next time!");
                     return;
                 case 10:
                     System.out.println("\nbookstore@bookstore.p2\n");
                     continue;
                 case 11:
-                    BookOperations.changeBookName(BookOperations.findBookById(BookData.getINSTANCE().getBooks()));
+                    BookOperations.changeBookName(BookOperations.findBookById(bookListInMain));
                     continue;
                 case 12:
-                    AuthorOperations.changeAuthorsAge(AuthorOperations.findAuthor(AuthorData.getINSTANCE().getAuthors()));
+                    AuthorOperations.changeAuthorsAge(AuthorOperations.findAuthor(authorListInMain));
                     continue;
+                case 13:
+                    List<Book> booksByAuthor = BookOperations.findBooksByAuthor(bookListInMain, authorListInMain);
+                    BookPrinter.printBooks(booksByAuthor);
                 default:
             }
         }

@@ -8,20 +8,26 @@ public class BookPrinter {
         System.out.println("97 = Year, Title, ISBN");
         System.out.println("98 = Title, Year, ISBN");
         System.out.println("99 = ISBN, Title, Year");
-        System.out.println("0 = Default - all details");
+        System.out.println("Any other = Default - all details");
         viewmode = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
     }
 
     public static void printBooks(List<Book> bookList) {
-        if (viewmode == 97) {
-            viewFirstYear(bookList);
-        } else if (viewmode == 98) {
-            viewFirstTitle(bookList);
-        } else if (viewmode == 99) {
-            viewFirstISBN(bookList);
-        } else
-            defaultView(bookList);
-    }
+        if (bookList.isEmpty()) {
+            System.out.println("\nBook not found\n");
+        }else {
+            if (viewmode == 97) {
+                viewFirstYear(bookList);
+            } else if (viewmode == 98) {
+                viewFirstTitle(bookList);
+            } else if (viewmode == 99) {
+                viewFirstISBN(bookList);
+            } else
+                defaultView(bookList);
+        }
+
+        }
+
 
     public static void defaultView(List<Book> bookList) {
         System.out.println();

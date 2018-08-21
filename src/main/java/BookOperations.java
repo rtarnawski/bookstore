@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-class BookOperations {
-    static List<Book> findBooksInCategory() {
+public class BookOperations {
+    public static List<Book> findBooksInCategory() {
         System.out.println("\nPlease provide ID of category\n");
         for (BooksCategory category : CategoryData.getINSTANCE().getBooksCategories()) {
             System.out.println("ID: " + category.getCategoryID() + "  ----   " + category.getName());
@@ -28,6 +28,22 @@ class BookOperations {
         }
         System.out.println("No such ID");
         return Optional.empty();
+    }
+
+    public static List<Book> findBooksByAuthor(List<Book> bookList, List<Author> authorList) {
+        Optional<Author> author = AuthorOperations.findAuthor(authorList);
+        List<Book> booksByAuthor = new ArrayList<>();
+        if (author.isPresent()) {
+            Author authorFromOptional = author.get();
+            for (Book book : bookList) {
+                List<Author> authorsInLoop = book.getAuthors();
+                if (authorsInLoop.contains(authorFromOptional)) {
+                    booksByAuthor.add(book);
+                }
+            }
+
+        }
+        return booksByAuthor;
     }
 
     public static void changeBookName(Optional<Book> book) {
