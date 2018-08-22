@@ -15,7 +15,7 @@ public class BookPrinter {
     public static void printBooks(List<Book> bookList) {
         if (bookList.isEmpty()) {
             System.out.println("\nBook not found\n");
-        }else {
+        } else {
             if (viewmode == 97) {
                 viewFirstYear(bookList);
             } else if (viewmode == 98) {
@@ -25,9 +25,7 @@ public class BookPrinter {
             } else
                 defaultView(bookList);
         }
-
-        }
-
+    }
 
     public static void defaultView(List<Book> bookList) {
         System.out.println();

@@ -5,11 +5,19 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AuthorOperations {
-    public static void printAuthors() {
-        List<Author> authorListInPrintMethod = AuthorData.getINSTANCE().getAuthors();
+    public static void printAuthors(List<Author> authorList) {
         System.out.println();
-        for (Author authorInLoop : authorListInPrintMethod) {
+        for (Author authorInLoop : authorList) {
             System.out.println(authorInLoop.toString());
+        }
+        System.out.println();
+    }
+
+    public static void printAuthorsWithNumberOfBooks(List<Book> bookList, List<Author> authorList) {
+        System.out.println();
+        for (Author authorInLoop : authorList) {
+            long bookCount = bookList.stream().filter(book -> book.getAuthors().contains(authorInLoop)).count();
+            System.out.printf("Author " + authorInLoop.getLastName() + " published %d books\n", bookCount);
         }
         System.out.println();
     }
@@ -29,9 +37,9 @@ public class AuthorOperations {
 
     public static Optional<Author> findAuthorById(List<Author> authorList, int id) {
         Optional<Author> authorById = authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
-        if (authorById.isPresent()){
+        if (authorById.isPresent()) {
             return authorById;
-        }else {
+        } else {
             System.out.println("Author not found");
             return authorById;
         }

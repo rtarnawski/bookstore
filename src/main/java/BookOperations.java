@@ -41,7 +41,6 @@ public class BookOperations {
                     booksByAuthor.add(book);
                 }
             }
-
         }
         return booksByAuthor;
     }
