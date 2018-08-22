@@ -14,6 +14,10 @@ public class App {
             System.out.println("Messed up file.... I'm dizzy... I will go now....");
             System.out.println(e.getMessage());
             System.exit(1);
+        }catch (NumberFormatException nex){
+            System.out.println("Messed up file.... I'm dizzy... I will go now....");
+            System.out.println(nex.getMessage());
+            System.exit(1);
         }
         Menu.printMenu();
     }

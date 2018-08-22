@@ -83,13 +83,11 @@ public class BookFunctionsTest {
         Assert.assertEquals(2, BookFunctions.getTheNewestBook(testBookList).size());
         Assert.assertEquals(165582, BookFunctions.getTheNewestBook(testBookList).get(0).getIsbn());
         Assert.assertEquals(1869558, BookFunctions.getTheNewestBook(testBookList).get(1).getIsbn());
-
     }
 
     @Test
     public void getTheNewestBookStreamStyle() {
         Assert.assertEquals(165582, BookFunctions.getTheNewestBookStreamStyle(testBookList).getIsbn());
-
     }
 
     @Test
@@ -151,7 +149,7 @@ public class BookFunctionsTest {
 
     @Test
     public void sortBooksDescendingByPublishingDate() {
-        Assert.assertEquals(1869558, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(0).getIsbn());
+        Assert.assertEquals(165582, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(0).getIsbn());
         Assert.assertEquals(15886, BookFunctions.sortBooksDescendingByPublishingDate(testBookList).get(testBookList.size() - 1).getIsbn());
     }
 
@@ -196,7 +194,6 @@ public class BookFunctionsTest {
         BookFunctions.sortBooksByTitle(testBookList);
         Assert.assertEquals("core c++", testBookList.get(0).getTitle());
         Assert.assertEquals("core python", testBookList.get(testBookList.size() - 1).getTitle());
-
     }
 
     @Test
@@ -205,6 +202,5 @@ public class BookFunctionsTest {
                 BookFunctions.sortBooksByTitleStreamStyle(testBookList).get(0).getTitle());
         Assert.assertEquals("core python",
                 BookFunctions.sortBooksByTitleStreamStyle(testBookList).get(4).getTitle());
-
     }
 }

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class CategoryOperations {
     public static void printCategories() {
         System.out.println();
@@ -17,5 +19,14 @@ public class CategoryOperations {
                 .getBooksCategories()
                 .add(new BooksCategory(newCategoryId, newCategoryName, newCategoryPriority));
         System.out.println("Thank you. Category " + newCategoryName + " has been added");
+    }
+
+    public static BooksCategory findCategoryById(List<BooksCategory> categoryList, int categoryId) {
+        for (BooksCategory category : categoryList) {
+            if (category.getCategoryID() == categoryId) {
+                return category;
+            }
+        }
+        return null;
     }
 }

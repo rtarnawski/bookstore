@@ -17,6 +17,7 @@ public class CsvCategoryImport {
             categoryList.add(new BooksCategory(id, name, priority));
             nextLine = bufferedReader.readLine();
         }
+        bufferedReader.close();
         return categoryList;
     }
 }

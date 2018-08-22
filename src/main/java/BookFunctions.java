@@ -58,11 +58,7 @@ public class BookFunctions {
     }
 
     public static List<Book> getTwoLastBooks(List<Book> bookList) {
-        List<Book> twoLastBooks = new ArrayList<>();
-        for (int i = bookList.size() - 2; i < bookList.size(); i++) {
-            twoLastBooks.add(bookList.get(i));
-        }
-        return twoLastBooks;
+        return bookList.subList(bookList.size() - 2, bookList.size());
     }
 
     public static List<Book> getTwoLastBooksSteamStyle(List<Book> bookList) {
@@ -121,7 +117,7 @@ public class BookFunctions {
 
     public static boolean bookPublishedBefore(int year, List<Book> bookList) {
         for (Book book : bookList) {
-            if ((book.getPublishingDate() < year))
+            if (book.getPublishingDate() < year)
                 return true;
         }
         return false;
@@ -152,7 +148,7 @@ public class BookFunctions {
     }
 
     public static List<Book> sortBooksAsscendingByPublishingDate(List<Book> bookList) {
-        Collections.sort(bookList, new BookCompAscPublishingDate());
+        bookList.sort(new BookCompAscPublishingDate());
         return bookList;
     }
 
@@ -163,7 +159,7 @@ public class BookFunctions {
     }
 
     public static List<Book> sortBooksDescendingByPublishingDate(List<Book> bookList) {
-        Collections.sort(bookList, new Comparator<Book>() {
+        bookList.sort(new Comparator<Book>() {
             @Override
             public int compare(Book o1, Book o2) {
                 if (o1.getPublishingDate() < o2.getPublishingDate()) {
@@ -185,7 +181,7 @@ public class BookFunctions {
 
     public static List<Book> addYearsToPublishingDateForEveryBook(int year, List<Book> bookList) {
         List<Book> newBookList = new ArrayList<>();
-        for (Book bookInLoop : newBookList) {
+        for (Book bookInLoop : bookList) {
             newBookList.add(new Book(bookInLoop.getId(), bookInLoop.getTitle(), bookInLoop.getIsbn(), bookInLoop.getPublishingDate() + year, bookInLoop.getBookBinding(), bookInLoop.getAuthors(), bookInLoop.getBooksCategory()));
         }
         return newBookList;
