@@ -25,7 +25,7 @@ public class CsvCategoryImportTest {
         expectedCategoryList.add(new BooksCategory(2, "Wzorce projektowe", 1));
         expectedCategoryList.add(new BooksCategory(3, "Techniki programowania", 2));
 
-        List<BooksCategory> categoryList = CsvCategoryImport.categoryImportFromFile("categories.csv");
+        List<BooksCategory> categoryList = CsvCategoryImport.categoryImportFromFile("src/test/resources/testCategories.csv");
 
         Assert.assertEquals(expectedCategoryList.size(), categoryList.size());
 

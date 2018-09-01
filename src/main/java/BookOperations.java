@@ -35,11 +35,17 @@ public class BookOperations {
         List<Book> booksByAuthor = new ArrayList<>();
         if (author.isPresent()) {
             Author authorFromOptional = author.get();
-            for (Book book : bookList) {
-                List<Author> authorsInLoop = book.getAuthors();
-                if (authorsInLoop.contains(authorFromOptional)) {
-                    booksByAuthor.add(book);
-                }
+            booksByAuthor = listBooksByAuthor(bookList, authorFromOptional);
+        }
+        return booksByAuthor;
+    }
+
+    public static List<Book> listBooksByAuthor(List<Book> bookList, Author authorFromOptional) {
+        List<Book> booksByAuthor = new ArrayList<>();
+        for (Book book : bookList) {
+            List<Author> authorsInLoop = book.getAuthors();
+            if (authorsInLoop.contains(authorFromOptional)) {
+                booksByAuthor.add(book);
             }
         }
         return booksByAuthor;

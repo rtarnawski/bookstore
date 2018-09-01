@@ -19,13 +19,7 @@ public class CsvBooksImporter {
             BookBinding bookBinding = (BookBinding.valueOf(split[4]));
             List<Author> authorList = new ArrayList<>();
             String[] authorsSplitted = split[5].split(",");
-            for (String authorId : authorsSplitted) {
-                int idAuthor = Integer.parseInt(authorId);
-                Optional<Author> authorById = AuthorOperations.findAuthorById(AuthorData.getINSTANCE().getAuthors(), idAuthor);
-                if (authorById.isPresent()) {
-                    authorList.add(authorById.get());
-                }
-            }
+            authorSetting(authorList, authorsSplitted);
             int categoryId = Integer.parseInt(split[6]);
             BooksCategory category = CategoryOperations.findCategoryById(CategoryData.getINSTANCE().getBooksCategories(), categoryId);
             bookList.add(new Book(id, title, isbn, publishingDate, bookBinding, authorList, category));
@@ -33,5 +27,15 @@ public class CsvBooksImporter {
         }
         bufferedReader.close();
         return bookList;
+    }
+
+    public static void authorSetting(List<Author> authorList, String[] authorsSplitted) {
+        for (String authorId : authorsSplitted) {
+            int idAuthor = Integer.parseInt(authorId);
+            Optional<Author> authorById = AuthorOperations.findAuthorById(AuthorData.getINSTANCE().getAuthors(), idAuthor);
+            if (authorById.isPresent()) {
+                authorList.add(authorById.get());
+            }
+        }
     }
 }

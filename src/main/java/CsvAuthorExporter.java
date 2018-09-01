@@ -1,10 +1,11 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
 public class CsvAuthorExporter {
     public static void exportAuthorsToCsvFile(List<Author> authorList) {
-        try (PrintWriter printWriter = new PrintWriter("authors.csv")) {
+        try (PrintWriter printWriter = new PrintWriter(new File("authors.csv"))) {
             StringBuilder stringBuilder = new StringBuilder();
             for (Author author : authorList) {
                 stringBuilder.append(author.getAuthorID());

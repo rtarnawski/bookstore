@@ -1,24 +1,11 @@
 import java.util.List;
+import java.util.Optional;
 
 public class Menu {
     public static void printMenu() {
         System.out.println("Hello " + System.getProperty("user.name") + " !");
         while (true) {
-            System.out.println("Please choose your option:");
-            System.out.println("1 - add book to the bookstore");
-            System.out.println("2 - print list of books");
-            System.out.println("3 - print list of categories");
-            System.out.println("4 - print list of authors");
-            System.out.println("5 - print list of books in a given category");
-            System.out.println("6 - add new author");
-            System.out.println("7 - add new category");
-            System.out.println("8 - change view for books");
-            System.out.println("9 - exit");
-            System.out.println("10 - contact");
-            System.out.println("11 - change book's name");
-            System.out.println("12 - change author's age");
-            System.out.println("13 - print list of books by Author");
-            System.out.println("14 - print author's last names with number of published books");
+            listChoices();
             try {
                 int usersChoice = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
                 List<Book> bookListInMain = BookData.getINSTANCE().getBooks();
@@ -52,6 +39,7 @@ public class Menu {
                     case 9:
                         CsvAuthorExporter.exportAuthorsToCsvFile(authorListInMain);
                         CsvCategoryExporter.exportCategoriesToCsvFile(booksCategoriesListInMain);
+                        CsvBooksExporter.exportBooksToCsvFile(bookListInMain);
                         System.out.println("Thank you and CU next time!");
                         return;
                     case 10:
@@ -61,7 +49,8 @@ public class Menu {
                         BookOperations.changeBookName(BookOperations.findBookById(bookListInMain));
                         continue;
                     case 12:
-                        AuthorOperations.changeAuthorsAge(AuthorOperations.findAuthor(authorListInMain));
+                        Optional<Author> author = AuthorOperations.findAuthor(authorListInMain);
+                        author.ifPresent(AuthorOperations::changeAuthorsAge);
                         continue;
                     case 13:
                         List<Book> booksByAuthor = BookOperations.findBooksByAuthor(bookListInMain, authorListInMain);
@@ -72,13 +61,29 @@ public class Menu {
                         continue;
                     default:
                         System.out.println("\nPlease provide one of the numbers presented\n");
-
                 }
             } catch (NumberFormatException ex) {
                 System.out.println("\nPlease provide one of the numbers presented\n");
-                continue;
             }
         }
+    }
+
+    public static void listChoices() {
+        System.out.println("Please choose your option:");
+        System.out.println("1 - add book to the bookstore");
+        System.out.println("2 - print list of books");
+        System.out.println("3 - print list of categories");
+        System.out.println("4 - print list of authors");
+        System.out.println("5 - print list of books in a given category");
+        System.out.println("6 - add new author");
+        System.out.println("7 - add new category");
+        System.out.println("8 - change view for books");
+        System.out.println("9 - exit");
+        System.out.println("10 - contact");
+        System.out.println("11 - change book's name");
+        System.out.println("12 - change author's age");
+        System.out.println("13 - print list of books by Author");
+        System.out.println("14 - print author's last names with number of published books");
     }
 }
 

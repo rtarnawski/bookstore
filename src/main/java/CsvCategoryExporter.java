@@ -17,6 +17,7 @@ public class CsvCategoryExporter {
             }
             writer.write(stringBuilder.toString().trim());
         } catch (IOException e) {
+            System.out.println("File error");
             e.printStackTrace();
         }
     }
