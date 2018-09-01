@@ -1,3 +1,14 @@
+package bookstore.importer;
+
+import bookstore.data.AuthorData;
+import bookstore.services.AuthorOperations;
+import bookstore.data.CategoryData;
+import bookstore.services.CategoryOperations;
+import bookstore.pojo.Author;
+import bookstore.pojo.Book;
+import bookstore.pojo.BookBinding;
+import bookstore.pojo.BooksCategory;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

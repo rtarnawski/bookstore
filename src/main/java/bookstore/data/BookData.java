@@ -1,4 +1,7 @@
+package bookstore.data;
+
 import lombok.Getter;
+import bookstore.pojo.Book;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,3 +1,21 @@
+package bookstore;
+
+import bookstore.data.AuthorData;
+import bookstore.data.BookData;
+import bookstore.data.CategoryData;
+import bookstore.exporter.CsvAuthorExporter;
+import bookstore.exporter.CsvBooksExporter;
+import bookstore.exporter.CsvCategoryExporter;
+import bookstore.pojo.Author;
+import bookstore.pojo.Book;
+import bookstore.pojo.BooksCategory;
+import bookstore.services.BookPrinter;
+import bookstore.utils.UserInput;
+import bookstore.services.AuthorOperations;
+import bookstore.services.BookOperations;
+import bookstore.services.CategoryOperations;
+import bookstore.utils.Validator;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +31,7 @@ public class Menu {
                 List<BooksCategory> booksCategoriesListInMain = CategoryData.getINSTANCE().getBooksCategories();
                 switch (usersChoice) {
                     case 1:
-                        // BookOperations.addBook();
+                        // bookstore.services.BookOperations.addBook();
                         continue;
                     case 2:
                         BookPrinter.printBooks(bookListInMain);
@@ -25,7 +43,7 @@ public class Menu {
                         AuthorOperations.printAuthors(authorListInMain);
                         continue;
                     case 5:
-                        BookPrinter.printBooks(BookOperations.findBooksInCategory());
+                        BookPrinter.printBooks(BookOperations.findBooksInCategory(bookListInMain, booksCategoriesListInMain));
                         continue;
                     case 6:
                         AuthorOperations.addAuthor();
@@ -43,10 +61,11 @@ public class Menu {
                         System.out.println("Thank you and CU next time!");
                         return;
                     case 10:
-                        System.out.println("\nbookstore@bookstore.p2\n");
+                        System.out.println("\nbookstore@bookstore.pl\n");
                         continue;
                     case 11:
-                        BookOperations.changeBookName(BookOperations.findBookById(bookListInMain));
+                        Optional<Book> bookById = BookOperations.findBookById(bookListInMain);
+                        bookById.ifPresent(BookOperations::changeBookName);
                         continue;
                     case 12:
                         Optional<Author> author = AuthorOperations.findAuthor(authorListInMain);
@@ -58,6 +77,15 @@ public class Menu {
                         continue;
                     case 14:
                         AuthorOperations.printAuthorsWithNumberOfBooks(bookListInMain, authorListInMain);
+                        continue;
+                    case 15:
+                        CategoryOperations.changeCategoryName(booksCategoriesListInMain);
+                        continue;
+                    case 16:
+                        CsvAuthorExporter.exportAuthorsToCsvFile(authorListInMain);
+                        CsvCategoryExporter.exportCategoriesToCsvFile(booksCategoriesListInMain);
+                        CsvBooksExporter.exportBooksToCsvFile(bookListInMain);
+                        System.out.println("Work saved");
                         continue;
                     default:
                         System.out.println("\nPlease provide one of the numbers presented\n");
@@ -84,6 +112,9 @@ public class Menu {
         System.out.println("12 - change author's age");
         System.out.println("13 - print list of books by Author");
         System.out.println("14 - print author's last names with number of published books");
+        System.out.println("15 - change category's name");
+        System.out.println("16 - save");
+        System.out.println();
     }
 }
 

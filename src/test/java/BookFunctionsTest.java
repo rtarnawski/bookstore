@@ -1,3 +1,8 @@
+import bookstore.pojo.Author;
+import bookstore.pojo.Book;
+import bookstore.pojo.BookBinding;
+import bookstore.pojo.BooksCategory;
+import bookstore.services.BookFunctions;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Before;

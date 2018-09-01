@@ -1,3 +1,7 @@
+package bookstore.exporter;
+
+import bookstore.pojo.Book;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -6,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class CsvBooksExporter {
     public static void exportBooksToCsvFile(List<Book> bookList) {
-        try (FileWriter writer = new FileWriter(new File("authors.csv"))) {
+        try (FileWriter writer = new FileWriter(new File("books.csv"))) {
             StringBuilder builder = new StringBuilder();
             for (Book book : bookList) {
                 builder.append(book.getId());
@@ -22,7 +26,7 @@ public class CsvBooksExporter {
                 builder.append(book.getAuthors().stream().map(author -> String.valueOf(author.getAuthorID())).
                         collect(Collectors.joining(",")));
                 builder.append(";");
-                builder.append(book.getBooksCategory());
+                builder.append(book.getBooksCategory().getCategoryID());
                 builder.append("\n");
             }
             writer.write(builder.toString().trim());

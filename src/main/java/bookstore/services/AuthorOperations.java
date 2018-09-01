@@ -1,4 +1,11 @@
+package bookstore.services;
+
+import bookstore.utils.Validator;
+import bookstore.data.AuthorData;
+import bookstore.utils.UserInput;
 import org.apache.commons.lang3.StringUtils;
+import bookstore.pojo.Author;
+import bookstore.pojo.Book;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,13 +43,8 @@ public class AuthorOperations {
     }
 
     public static Optional<Author> findAuthorById(List<Author> authorList, int id) {
-        Optional<Author> authorById = authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
-        if (authorById.isPresent()) {
-        } else {
-            System.out.println("Author not found");
+       return authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
         }
-        return authorById;
-    }
 
     public static Optional<Author> findAuthorByLastName(List<Author> authorList, String lastName) {
         List<Author> authorByLastName = authorList.stream().filter(author -> author.getLastName().equalsIgnoreCase(lastName)).collect(Collectors.toList());
@@ -61,7 +63,8 @@ public class AuthorOperations {
     }
 
     public static Optional<Author> findAuthor(List<Author> authorList) {
-        System.out.println("\nPlease provide author's ID or last name");
+        System.out.println("\nPlease provide author's ID or last name\n");
+        printAuthors(authorList);
         String searchWord = UserInput.scanner.nextLine();
         if (StringUtils.isNumeric(searchWord)) {
             return findAuthorById(authorList, Integer.parseInt(searchWord));

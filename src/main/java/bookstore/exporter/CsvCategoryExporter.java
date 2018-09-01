@@ -1,3 +1,7 @@
+package bookstore.exporter;
+
+import bookstore.pojo.BooksCategory;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

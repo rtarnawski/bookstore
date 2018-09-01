@@ -1,3 +1,7 @@
+package bookstore.data;
+
+import bookstore.pojo.Author;
+
 import java.util.ArrayList;
 import java.util.List;
 

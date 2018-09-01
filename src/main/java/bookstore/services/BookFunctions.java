@@ -1,3 +1,7 @@
+package bookstore.services;
+
+import bookstore.pojo.Book;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

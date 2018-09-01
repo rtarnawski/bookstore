@@ -1,3 +1,5 @@
+package bookstore.utils;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class Validator {

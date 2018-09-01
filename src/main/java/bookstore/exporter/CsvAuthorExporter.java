@@ -1,3 +1,7 @@
+package bookstore.exporter;
+
+import bookstore.pojo.Author;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

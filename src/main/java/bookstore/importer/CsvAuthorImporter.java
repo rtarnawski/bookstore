@@ -1,3 +1,6 @@
+package bookstore.importer;
+
+import bookstore.pojo.Author;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

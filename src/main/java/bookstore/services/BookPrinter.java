@@ -1,3 +1,9 @@
+package bookstore.services;
+
+import bookstore.pojo.Book;
+import bookstore.utils.UserInput;
+import bookstore.utils.Validator;
+
 import java.util.List;
 
 public class BookPrinter {
@@ -14,7 +20,7 @@ public class BookPrinter {
 
     public static void printBooks(List<Book> bookList) {
         if (bookList.isEmpty()) {
-            System.out.println("\nBook not found\n");
+            System.out.println("\nbookstore.pojo.Book not found\n");
         } else {
             if (viewmode == 97) {
                 viewFirstYear(bookList);
