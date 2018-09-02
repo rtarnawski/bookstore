@@ -1,12 +1,13 @@
 package bookstore.services;
 
-import bookstore.utils.Validator;
 import bookstore.data.CategoryData;
-import bookstore.utils.UserInput;
-import lombok.extern.slf4j.Slf4j;
 import bookstore.pojo.BooksCategory;
+import bookstore.utils.UserInput;
+import bookstore.utils.Validator;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 @Slf4j
 public class CategoryOperations {
@@ -28,7 +29,9 @@ public class CategoryOperations {
     }
 
     public static void addCategory() {
-        int newCategoryId = CategoryData.getINSTANCE().getBooksCategories().size() + 1;
+        OptionalInt maxID = CategoryData.getINSTANCE().getBooksCategories().stream()
+                .mapToInt(BooksCategory::getCategoryID).max();
+        int newCategoryId = maxID.orElse(0) + 1;
         System.out.println("Please provide name of the category:");
         String newCategoryName = Validator.alphaValidator(UserInput.scanner.nextLine());
         System.out.println("Please provide numeric priority");
@@ -62,5 +65,10 @@ public class CategoryOperations {
         }
         System.out.println("Category not found");
         return findCategoryByIdFromUser(categoryList);
+    }
+
+    public static void deleteCategoryById(List<BooksCategory> categories) {
+        categories.remove(findCategoryByIdFromUser(categories));
+        System.out.println("Category deleted\n");
     }
 }

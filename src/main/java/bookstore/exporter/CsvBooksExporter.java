@@ -1,5 +1,6 @@
 package bookstore.exporter;
 
+import bookstore.data.DataSupplier;
 import bookstore.pojo.Book;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class CsvBooksExporter {
     public static void exportBooksToCsvFile(List<Book> bookList) {
-        try (FileWriter writer = new FileWriter(new File("books.csv"))) {
+        try (FileWriter writer = new FileWriter(new File(DataSupplier.getFileName("books")))) {
             StringBuilder builder = new StringBuilder();
             for (Book book : bookList) {
                 builder.append(book.getId());

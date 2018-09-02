@@ -1,5 +1,6 @@
 package bookstore.exporter;
 
+import bookstore.data.DataSupplier;
 import bookstore.pojo.Author;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class CsvAuthorExporter {
     public static void exportAuthorsToCsvFile(List<Author> authorList) {
-        try (PrintWriter printWriter = new PrintWriter(new File("authors.csv"))) {
+        try (PrintWriter printWriter = new PrintWriter(new File(DataSupplier.getFileName("authors")))) {
             StringBuilder stringBuilder = new StringBuilder();
             for (Author author : authorList) {
                 stringBuilder.append(author.getAuthorID());

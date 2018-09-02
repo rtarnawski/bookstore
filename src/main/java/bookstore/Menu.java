@@ -32,6 +32,7 @@ public class Menu {
                 switch (usersChoice) {
                     case 1:
                         // bookstore.services.BookOperations.addBook();
+                        System.out.println("This feature will be available soon");
                         continue;
                     case 2:
                         BookPrinter.printBooks(bookListInMain);
@@ -87,6 +88,9 @@ public class Menu {
                         CsvBooksExporter.exportBooksToCsvFile(bookListInMain);
                         System.out.println("Work saved");
                         continue;
+                    case 17:
+                        CategoryOperations.deleteCategoryById(booksCategoriesListInMain);
+                        continue;
                     default:
                         System.out.println("\nPlease provide one of the numbers presented\n");
                 }
@@ -114,6 +118,7 @@ public class Menu {
         System.out.println("14 - print author's last names with number of published books");
         System.out.println("15 - change category's name");
         System.out.println("16 - save");
+        System.out.println("17 - remove category");
         System.out.println();
     }
 }

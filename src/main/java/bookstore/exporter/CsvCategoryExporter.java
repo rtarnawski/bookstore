@@ -1,5 +1,6 @@
 package bookstore.exporter;
 
+import bookstore.data.DataSupplier;
 import bookstore.pojo.BooksCategory;
 
 import java.io.File;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class CsvCategoryExporter {
     public static void exportCategoriesToCsvFile(List<BooksCategory> categoryList) {
-        try (FileWriter writer = new FileWriter(new File("categories.csv"))) {
+        try (FileWriter writer = new FileWriter(new File(DataSupplier.getFileName("categories")))) {
             StringBuilder stringBuilder = new StringBuilder();
             for (BooksCategory category : categoryList) {
                 stringBuilder.append(category.getCategoryID());

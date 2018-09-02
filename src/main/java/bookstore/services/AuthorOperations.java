@@ -1,14 +1,15 @@
 package bookstore.services;
 
-import bookstore.utils.Validator;
 import bookstore.data.AuthorData;
-import bookstore.utils.UserInput;
-import org.apache.commons.lang3.StringUtils;
 import bookstore.pojo.Author;
 import bookstore.pojo.Book;
+import bookstore.utils.UserInput;
+import bookstore.utils.Validator;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 public class AuthorOperations {
@@ -36,15 +37,17 @@ public class AuthorOperations {
         String lastName = Validator.alphaValidator(UserInput.scanner.nextLine());
         System.out.println("Please provide age");
         int age = Integer.parseInt(Validator.numericValidator(UserInput.scanner.nextLine()));
-        int id = AuthorData.getINSTANCE().getAuthors().size() + 1;
+        OptionalInt maxId = AuthorData.getINSTANCE().getAuthors().stream()
+                .mapToInt(Author::getAuthorID).max();
+        int id = maxId.orElse(0) + 1;
         Author newAuthor = new Author(id, firstName, lastName, age);
         AuthorData.getINSTANCE().getAuthors().add(newAuthor);
         System.out.println("Thank you. Author " + newAuthor.getName() + " " + newAuthor.getLastName() + " has been added\n");
     }
 
     public static Optional<Author> findAuthorById(List<Author> authorList, int id) {
-       return authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
-        }
+        return authorList.stream().filter(author -> author.getAuthorID() == id).findAny();
+    }
 
     public static Optional<Author> findAuthorByLastName(List<Author> authorList, String lastName) {
         List<Author> authorByLastName = authorList.stream().filter(author -> author.getLastName().equalsIgnoreCase(lastName)).collect(Collectors.toList());
