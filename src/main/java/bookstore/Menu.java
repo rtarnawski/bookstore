@@ -9,11 +9,8 @@ import bookstore.exporter.CsvCategoryExporter;
 import bookstore.pojo.Author;
 import bookstore.pojo.Book;
 import bookstore.pojo.BooksCategory;
-import bookstore.services.BookPrinter;
+import bookstore.services.*;
 import bookstore.utils.UserInput;
-import bookstore.services.AuthorOperations;
-import bookstore.services.BookOperations;
-import bookstore.services.CategoryOperations;
 import bookstore.utils.Validator;
 
 import java.util.List;
@@ -30,21 +27,21 @@ public class Menu {
                 List<Author> authorListInMain = AuthorData.getINSTANCE().getAuthors();
                 List<BooksCategory> booksCategoriesListInMain = CategoryData.getINSTANCE().getBooksCategories();
                 switch (usersChoice) {
+
                     case 1:
-                        // bookstore.services.BookOperations.addBook();
-                        System.out.println("This feature will be available soon");
-                        continue;
-                    case 2:
                         BookPrinter.printBooks(bookListInMain);
                         continue;
-                    case 3:
+                    case 2:
                         CategoryOperations.printCategories();
                         continue;
-                    case 4:
+                    case 3:
                         AuthorOperations.printAuthors(authorListInMain);
                         continue;
-                    case 5:
+                    case 4:
                         BookPrinter.printBooks(BookOperations.findBooksInCategory(bookListInMain, booksCategoriesListInMain));
+                        continue;
+                    case 5:
+                        Order.orderBookForRePrinting(bookListInMain);
                         continue;
                     case 6:
                         AuthorOperations.addAuthor();
@@ -102,11 +99,11 @@ public class Menu {
 
     public static void listChoices() {
         System.out.println("Please choose your option:");
-        System.out.println("1 - add book to the bookstore");
-        System.out.println("2 - print list of books");
-        System.out.println("3 - print list of categories");
-        System.out.println("4 - print list of authors");
-        System.out.println("5 - print list of books in a given category");
+        System.out.println("1 - print list of books");
+        System.out.println("2 - print list of categories");
+        System.out.println("3 - print list of authors");
+        System.out.println("4 - print list of books in a given category");
+        System.out.println("5 - order book for reprint");
         System.out.println("6 - add new author");
         System.out.println("7 - add new category");
         System.out.println("8 - change view for books");
